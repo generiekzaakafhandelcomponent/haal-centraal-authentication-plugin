@@ -1,9 +1,8 @@
 # Getting Started
 
-1. Copy this project
-2. Rename the module from `sample-plugin` to your plugin name
-3. Update package names, class names, and plugin keys
-4. Add your own plugin logic and actions
+This repository contains the `haal-centraal-authentication-plugin`, which provides SAML-based bearer-token
+authentication for calls to Haal Centraal APIs. See the [Example Application](example-application.md) guide to run
+it locally, and [Plugin Documentation](plugin.md) for the plugin's configuration properties.
 
 For more information on how to build a plugin, see
 the [Custom Plugin Definition](https://docs.valtimo.nl/features/plugins/plugins/custom-plugin-definition) documentation.

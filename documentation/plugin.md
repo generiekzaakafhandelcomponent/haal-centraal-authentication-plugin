@@ -1,10 +1,13 @@
 # Plugin Documentation
 
-<!-- Use this page to document your plugin. Below is a suggested structure. -->
-
 ## Overview
 
-This is a sample plugin demonstrating an API call action. It fetches data from a time API endpoint.
+The Haal Centraal Authentication plugin provides SAML-based bearer-token authentication for calls to Haal Centraal
+APIs. It exchanges client certificates for a SAML token at a configured Security Token Service (STS), and exposes
+that token to other plugins/HTTP clients via `applyAuth(RestClient.Builder)` and `getAuthenticatedHttpClient()`.
+
+This plugin exposes no process actions of its own — it is an authentication provider that other API plugins can
+reference as their authentication configuration, not something you link directly to a service task.
 
 ## Dependencies
 
@@ -12,7 +15,7 @@ This is a sample plugin demonstrating an API call action. It fetches data from a
 
 ```kotlin
 dependencies {
-    implementation("com.ritense.valtimoplugins:sample-plugin:0.0.1")
+    implementation("com.ritense.valtimoplugins:haal-centraal-authentication-plugin:1.0.0")
 }
 ```
 
@@ -21,7 +24,7 @@ dependencies {
 ```json
 {
   "dependencies": {
-    "@valtimo-plugins/sample-plugin": "0.0.1"
+    "@valtimo-plugins/haal-centraal-authentication-plugin": "1.0.0"
   }
 }
 ```
@@ -30,18 +33,18 @@ In your `app.module.ts`:
 
 ```typescript
 import {
-    SamplePluginModule, samplePluginSpecification,
-} from '@valtimo-plugins/sample-plugin';
+    HaalCentraalAuthenticationPluginModule, haalCentraalAuthenticationPluginSpecification,
+} from '@valtimo-plugins/haal-centraal-authentication-plugin';
 
 @NgModule({
     imports: [
-        SamplePluginModule,
+        HaalCentraalAuthenticationPluginModule,
     ],
     providers: [
         {
             provide: PLUGIN_TOKEN,
             useValue: [
-                samplePluginSpecification,
+                haalCentraalAuthenticationPluginSpecification,
             ]
         }
     ]
@@ -50,22 +53,22 @@ import {
 
 ## Configuration
 
-List the plugin configuration properties and how to set them.
-
-| Property | Type   | Required | Description                          |
-|----------|--------|----------|--------------------------------------|
-| apiUrl   | string | Yes      | The URL of the time API to call      |
+| Property          | Type   | Required | Description                                              |
+|--------------------|--------|----------|------------------------------------------------------------|
+| tokenServiceUrl    | string | Yes      | URL of the STS used to request the SAML token             |
+| keystorePath       | string | No       | Path to the client keystore (JKS) used for mTLS            |
+| keystoreSecret     | string | No       | Password of the client keystore                            |
+| truststorePath     | string | No       | Path to the truststore (JKS); defaults to the JVM truststore |
+| truststoreSecret   | string | No       | Password of the truststore                                 |
+| connectionTimeout  | number | No       | Connection timeout in milliseconds (default 10000)          |
+| responseTimeout    | number | No       | Response timeout in milliseconds (default 10000)            |
 
 ## Actions
 
-### Time API test action
-
-Sends a GET request to the configured API URL and returns the timezone response.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-|           |      |          |             |
+This plugin exposes no `@PluginAction`s.
 
 ## Usage
 
-Explain how to use the plugin in a process, with examples if applicable.
+Configure an instance of this plugin, then have another plugin definition that needs Haal Centraal access
+reference it as its authentication provider (the plugin category is `haal-centraal-authentication-plugin`), so its
+outgoing requests are authenticated using the SAML token obtained from the configured `tokenServiceUrl`.

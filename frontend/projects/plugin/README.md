@@ -1,1 +1,1 @@
-This is the sample plugin.
+This is the Haal Centraal Authentication plugin.

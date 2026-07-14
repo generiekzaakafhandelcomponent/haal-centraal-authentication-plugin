@@ -1,10 +1,10 @@
 [
     {
-        "id": "4ac9a49f-4aeb-4f91-86d9-853fd95a1b33",
-        "title": "Sample plugin (Autodeployed)",
-        "pluginDefinitionKey": "sample-plugin",
+        "id": "e63a98bb-228d-4daf-b0be-ab41305131b2",
+        "title": "Haal Centraal Authentication Plugin (Autodeployed)",
+        "pluginDefinitionKey": "haal-centraal-authentication-plugin",
         "properties": {
-            "apiUrl": "https://timeapi.io/api/time/current/zone?timeZone=Europe/Amsterdam"
+            "tokenServiceUrl": "https://example.com/sts/requestsecuritytoken"
         }
     }
 ]
