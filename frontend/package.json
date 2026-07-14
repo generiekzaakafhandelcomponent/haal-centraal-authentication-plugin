@@ -12,6 +12,7 @@
         "libs-build-all": "npm run build --workspaces",
         "lint": "ng lint",
         "ng": "ng",
+        "postinstall": "patch-package",
         "start": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng serve --proxy-config conf/proxy.conf.json",
         "test": "ng test"
     },
@@ -178,6 +179,7 @@
         "karma-jasmine-html-reporter": "2.1.0",
         "ng-mocks": "14.13.4",
         "ng-packagr": "19.2.2",
+        "patch-package": "^8.0.1",
         "prettier": "3.5.3",
         "puppeteer": "24.7.2",
         "sass": "1.87.0",
@@ -190,6 +192,7 @@
             "@angular/core": "$@angular/core",
             "@angular/forms": "$@angular/forms",
             "@angular/localize": "$@angular/localize"
-        }
+        },
+        "@bpmn-io/cm-theme": "0.2.2"
     }
 }
