@@ -23,8 +23,8 @@ pluginManager.withPlugin("maven-publish") {
                 version = pluginProperties.pluginVersion
 
                 pom {
-                    name = "Sample plugin module"
-                    description = "A module containing a sample plugin"
+                    name = "Haal Centraal Authentication plugin module"
+                    description = "A module containing the Haal Centraal Authentication plugin"
                     developers {
                         developer {
                             id = "team-valtimo"
