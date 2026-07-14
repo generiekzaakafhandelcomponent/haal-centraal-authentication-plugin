@@ -1,7 +1,6 @@
 # Haal Centraal Authentication Plugin
 
-A GZAC plugin, based on the [GZAC Plugin Template](https://github.com/Ritense/gzac-plugin-template), that provides
-SAML-based bearer-token authentication for calls to Haal Centraal APIs.
+A GZAC plugin that provides SAML-based bearer-token authentication for calls to Haal Centraal APIs.
 
 ## Getting started
 
@@ -16,4 +15,4 @@ Follow the [Getting Started](documentation/getting-started.md) guide for setup a
 
 ## Contact
 
--- naam contactpersoon (bedrijfsnaam)
+Ayub Abdulkader (Ritense)
