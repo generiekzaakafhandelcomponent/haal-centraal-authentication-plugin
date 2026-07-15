@@ -23,7 +23,7 @@ import java.net.URI
 class HaalCentraalAuthenticationPlugin(
     private val samlTokenClient: SamlTokenClient,
     private val clientFactoryHelper: ClientFactoryHelper
-): HaalCentraalAuthentication {
+) : HaalCentraalAuthentication {
 
     @PluginProperty(key = "tokenServiceUrl", secret = false, required = true)
     lateinit var tokenServiceUrl: URI

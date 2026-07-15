@@ -7,12 +7,12 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector
 
 class SamlTokenClient(
     private val clientFactoryHelper: ClientFactoryHelper
-)  {
+) {
 
     fun getToken(config: HttpClientConfig): String {
         val webClient = webClient(config)
         val response = webClient.post()
-            .uri{ uriBuilder ->
+            .uri { uriBuilder ->
                 uriBuilder.path("/requestsecuritytoken/v1")
                     .queryParam("b64", true)
                     .build()
