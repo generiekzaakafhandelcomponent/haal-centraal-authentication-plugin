@@ -22,7 +22,7 @@ import {
   ValtimoKeycloakOptions,
 } from "@valtimo/keycloak";
 import {KeycloakConfig, KeycloakOnLoad} from "keycloak-js";
-import {Auth, AuthProviders} from "@valtimo/shared";
+import {Auth, AuthProviders} from "@valtimo/config";
 
 const keycloakAuthenticationProviders: AuthProviders = {
   guardServiceProvider: KeycloakAuthGuardService,
@@ -30,7 +30,7 @@ const keycloakAuthenticationProviders: AuthProviders = {
 };
 
 const keycloakConfigDev: KeycloakConfig = {
-  url: "http://localhost:8081/auth/",
+  url: "http://localhost:8082/auth/",
   realm: "valtimo",
   clientId: "valtimo-console",
 };

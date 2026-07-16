@@ -11,11 +11,15 @@ reference as their authentication configuration, not something you link directly
 
 ## Dependencies
 
+This branch (`v12`) targets **Valtimo 12 / Java 17 / Angular 17**, and is published with a `-V12` version suffix.
+For Valtimo 13 / Java 21, use the `main` branch instead (plain semver, no suffix) — see
+[Versioning & compatibility](../README.md#versioning--compatibility).
+
 ### Backend
 
 ```kotlin
 dependencies {
-    implementation("com.ritense.valtimoplugins:haal-centraal-authentication-plugin:1.0.0")
+    implementation("com.ritense.valtimoplugins:haal-centraal-authentication-plugin:1.0.0-V12")
 }
 ```
 
@@ -24,7 +28,7 @@ dependencies {
 ```json
 {
   "dependencies": {
-    "@valtimo-plugins/haal-centraal-authentication-plugin": "1.0.0"
+    "@valtimo-plugins/haal-centraal-authentication-plugin": "1.0.0-V12"
   }
 }
 ```

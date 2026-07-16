@@ -7,5 +7,5 @@ data class HttpClientConfig(
     val keystorePath: String?,
     val keystoreSecret: String?,
     val truststorePath: String?,
-    val truststoreSecret: String?
+    val truststoreSecret: String?,
 )

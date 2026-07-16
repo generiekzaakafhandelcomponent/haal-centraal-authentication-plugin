@@ -7,7 +7,6 @@ import reactor.netty.http.client.HttpClient
 
 @PluginCategory("haal-centraal-authentication-plugin")
 interface HaalCentraalAuthentication : ExchangeFilterFunction {
-
     fun applyAuth(builder: RestClient.Builder): RestClient.Builder
 
     fun getAuthenticatedHttpClient(): HttpClient

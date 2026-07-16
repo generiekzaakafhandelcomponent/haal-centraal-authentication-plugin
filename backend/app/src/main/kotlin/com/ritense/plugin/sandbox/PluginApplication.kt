@@ -16,7 +16,7 @@
 
 package com.ritense.plugin.sandbox
 
-import io.github.oshai.kotlinlogging.KotlinLogging
+import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import java.net.InetAddress

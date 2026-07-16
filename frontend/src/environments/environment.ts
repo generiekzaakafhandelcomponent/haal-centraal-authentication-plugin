@@ -26,7 +26,7 @@ import {
   ROLE_USER,
   UploadProvider,
   ValtimoConfig
-} from "@valtimo/shared";
+} from "@valtimo/config";
 import {authenticationKeycloak} from "./auth/keycloak-config.dev";
 import {DARK_MODE_LOGO_BASE_64, LOGO_BASE_64} from "./logo";
 
@@ -105,8 +105,7 @@ export const environment: ValtimoConfig = {
         sequence: 6,
         children: [
           {title: "Configuration", textClass: "text-dark font-weight-bold c-default", sequence: 1},
-          {link: ["/building-block-management"], title: "buildingBlockManagement.title", sequence: 2},
-          {link: ["/case-management"], title: "Cases", sequence: 3},
+          {link: ["/dossier-management"], title: "Dossiers", sequence: 3},
           {link: ["/plugins"], title: "Plugins", sequence: 4},
           {link: ["/dashboard-management"], title: "Dashboard", sequence: 5},
           {link: ["/access-control"], title: "Access Control", sequence: 6},
@@ -161,6 +160,7 @@ export const environment: ValtimoConfig = {
   uploadProvider: UploadProvider.DOCUMENTEN_API,
   caseFileSizeUploadLimitMB: 100,
   defaultDefinitionTable: defaultDefinitionColumns,
+  customDefinitionTables: {},
   featureToggles: {
     disableCaseCount: true,
     enableObjectManagement: true,

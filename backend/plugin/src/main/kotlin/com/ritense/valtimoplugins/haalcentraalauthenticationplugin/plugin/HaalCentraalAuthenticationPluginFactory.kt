@@ -8,10 +8,8 @@ import com.ritense.valtimoplugins.haalcentraalauthenticationplugin.client.SamlTo
 class HaalCentraalAuthenticationPluginFactory(
     pluginService: PluginService,
     private val samlTokenClient: SamlTokenClient,
-    private val clientFactoryHelper: ClientFactoryHelper
+    private val clientFactoryHelper: ClientFactoryHelper,
 ) : PluginFactory<HaalCentraalAuthenticationPlugin>(pluginService) {
-
-    override fun create(): HaalCentraalAuthenticationPlugin {
-        return HaalCentraalAuthenticationPlugin(samlTokenClient, clientFactoryHelper)
-    }
+    override fun create(): HaalCentraalAuthenticationPlugin =
+        HaalCentraalAuthenticationPlugin(samlTokenClient, clientFactoryHelper)
 }

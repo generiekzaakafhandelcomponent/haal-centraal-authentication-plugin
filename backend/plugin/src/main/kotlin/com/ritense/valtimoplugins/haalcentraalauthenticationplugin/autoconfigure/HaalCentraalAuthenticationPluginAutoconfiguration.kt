@@ -9,27 +9,20 @@ import org.springframework.context.annotation.Bean
 
 @AutoConfiguration
 class HaalCentraalAuthenticationPluginAutoconfiguration {
-
     @Bean
     fun haalCentraalAuthenticationPluginFactory(
         pluginService: PluginService,
         samlTokenClient: SamlTokenClient,
-        clientFactoryHelper: ClientFactoryHelper
-    ): HaalCentraalAuthenticationPluginFactory {
-        return HaalCentraalAuthenticationPluginFactory(pluginService, samlTokenClient, clientFactoryHelper)
-    }
+        clientFactoryHelper: ClientFactoryHelper,
+    ): HaalCentraalAuthenticationPluginFactory =
+        HaalCentraalAuthenticationPluginFactory(pluginService, samlTokenClient, clientFactoryHelper)
 
     @Bean
-    fun clientFactoryHelper(): ClientFactoryHelper {
-        return ClientFactoryHelper()
-    }
+    fun clientFactoryHelper(): ClientFactoryHelper = ClientFactoryHelper()
 
     @Bean
-    fun samlTokenWebClient(
-        clientFactoryHelper: ClientFactoryHelper
-    ): SamlTokenClient {
-        return SamlTokenClient(
-            clientFactoryHelper
+    fun samlTokenWebClient(clientFactoryHelper: ClientFactoryHelper): SamlTokenClient =
+        SamlTokenClient(
+            clientFactoryHelper,
         )
-    }
 }

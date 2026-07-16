@@ -12,7 +12,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.postgresql:postgresql")
-    implementation("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")
+    implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
 
     if (System.getProperty("os.arch") == "aarch64") {
         runtimeOnly("io.netty:netty-resolver-dns-native-macos:$nettyResolverDnsNativeMacOsVersion:osx-aarch_64")

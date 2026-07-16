@@ -18,13 +18,13 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8081/auth/realms/valtimo/protocol/openid-connect/certs
+          jwk-set-uri: http://localhost:8082/auth/realms/valtimo/protocol/openid-connect/certs
       client:
         provider:
           keycloakjwt:
-            issuer-uri: http://localhost:8081/auth/realms/valtimo
+            issuer-uri: http://localhost:8082/auth/realms/valtimo
           keycloakapi:
-            issuer-uri: http://localhost:8081/auth/realms/valtimo
+            issuer-uri: http://localhost:8082/auth/realms/valtimo
         registration:
           keycloakjwt:
             client-id: valtimo-console
@@ -80,8 +80,10 @@ valtimo:
     whitelist:
       hosts:
         - localhost
+  connector-encryption:
+    secret: ${VALTIMO_CONNECTORENCRYPTION_SECRET}
   plugin:
-    encryption-secret: "abcdefghijklmnop"
+    encryption-secret: ${VALTIMO_PLUGIN_ENCRYPTIONSECRET}
   docker:
     filter:
       enabled: true
@@ -125,7 +127,7 @@ audit:
   record:
     retention: 365 # days
 
-operaton:
+camunda:
   bpm:
     history-level: AUDIT
     history-level-default: AUDIT

@@ -17,14 +17,13 @@ import java.net.URI
 @Plugin(
     key = "haal-centraal-authentication-plugin",
     title = "Haal Centraal Authentication Plugin",
-    description = "Plugin used to provide authentication to haal centraal"
+    description = "Plugin used to provide authentication to haal centraal",
 )
 @Suppress("UNUSED")
 class HaalCentraalAuthenticationPlugin(
     private val samlTokenClient: SamlTokenClient,
-    private val clientFactoryHelper: ClientFactoryHelper
+    private val clientFactoryHelper: ClientFactoryHelper,
 ) : HaalCentraalAuthentication {
-
     @PluginProperty(key = "tokenServiceUrl", secret = false, required = true)
     lateinit var tokenServiceUrl: URI
 
@@ -46,28 +45,34 @@ class HaalCentraalAuthenticationPlugin(
     @PluginProperty(key = "responseTimeout", secret = false, required = false)
     var responseTimeout: Int? = 10000
 
-    override fun filter(request: ClientRequest, next: ExchangeFunction): Mono<ClientResponse> {
-        val getToken = samlTokenClient.getToken(
-            getClientConfig()
-        )
-        val filteredRequest = ClientRequest.from(request).headers { headers ->
-            headers.set("x-saml-attribute-token1", getToken)
-        }.build()
+    override fun filter(
+        request: ClientRequest,
+        next: ExchangeFunction,
+    ): Mono<ClientResponse> {
+        val getToken =
+            samlTokenClient.getToken(
+                getClientConfig(),
+            )
+        val filteredRequest =
+            ClientRequest
+                .from(request)
+                .headers { headers ->
+                    headers.set("x-saml-attribute-token1", getToken)
+                }.build()
         return next.exchange(filteredRequest)
     }
 
     override fun applyAuth(builder: RestClient.Builder): RestClient.Builder {
-        val getToken = samlTokenClient.getToken(
-            getClientConfig()
-        )
+        val getToken =
+            samlTokenClient.getToken(
+                getClientConfig(),
+            )
         return builder.defaultHeaders { headers ->
             headers.setBearerAuth(getToken)
         }
     }
 
-    override fun getAuthenticatedHttpClient(): HttpClient {
-        return clientFactoryHelper.httpClient(getClientConfig())
-    }
+    override fun getAuthenticatedHttpClient(): HttpClient = clientFactoryHelper.httpClient(getClientConfig())
 
     private fun getClientConfig() =
         HttpClientConfig(
@@ -77,6 +82,6 @@ class HaalCentraalAuthenticationPlugin(
             keystorePath = keystorePath,
             keystoreSecret = keystoreSecret,
             connectionTimeout = connectionTimeout,
-            responseTimeout = responseTimeout
+            responseTimeout = responseTimeout,
         )
 }

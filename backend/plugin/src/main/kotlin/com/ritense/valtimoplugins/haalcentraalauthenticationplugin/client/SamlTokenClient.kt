@@ -1,35 +1,36 @@
 package com.ritense.valtimoplugins.haalcentraalauthenticationplugin.client
 
+import mu.KotlinLogging
+import org.springframework.http.client.reactive.ReactorClientHttpConnector
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
-import io.github.oshai.kotlinlogging.KotlinLogging
-import org.springframework.http.client.reactive.ReactorClientHttpConnector
 
 class SamlTokenClient(
-    private val clientFactoryHelper: ClientFactoryHelper
+    private val clientFactoryHelper: ClientFactoryHelper,
 ) {
-
     fun getToken(config: HttpClientConfig): String {
         val webClient = webClient(config)
-        val response = webClient.post()
-            .uri { uriBuilder ->
-                uriBuilder.path("/requestsecuritytoken/v1")
-                    .queryParam("b64", true)
-                    .build()
-            }
-            .body(BodyInserters.fromValue(SOAPBODY))
-            .retrieve()
-            .toEntity(String::class.java)
-            .block()!!
+        val response =
+            webClient
+                .post()
+                .uri { uriBuilder ->
+                    uriBuilder
+                        .path("/requestsecuritytoken/v1")
+                        .queryParam("b64", true)
+                        .build()
+                }.body(BodyInserters.fromValue(SOAPBODY))
+                .retrieve()
+                .toEntity(String::class.java)
+                .block()!!
 
         return response.body!!
     }
 
     private fun webClient(httpClientConfig: HttpClientConfig): WebClient {
-
         val httpClient = clientFactoryHelper.httpClient(httpClientConfig)
 
-        return WebClient.builder()
+        return WebClient
+            .builder()
             .clientConnector(ReactorClientHttpConnector(httpClient))
             .baseUrl(httpClientConfig.tokenServiceUrl)
             .defaultHeader("Content-Type", "text/xml;charset=UTF-8")
@@ -39,7 +40,8 @@ class SamlTokenClient(
 
     companion object {
         val logger = KotlinLogging.logger {}
-        val SOAPBODY = """
+        val SOAPBODY =
+            """
             <soapenv:Envelope
                 xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                 xmlns:ns="http://docs.oasis-open.org/ws-sx/ws-trust/200512">
@@ -54,6 +56,6 @@ class SamlTokenClient(
                     </ns:RequestSecurityToken>
                 </soapenv:Body>
             </soapenv:Envelope>
-        """.trimIndent()
+            """.trimIndent()
     }
 }

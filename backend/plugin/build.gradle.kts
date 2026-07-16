@@ -26,23 +26,22 @@ dockerCompose {
 val kotlinLoggingVersion: String by project
 val mockitoKotlinVersion: String by project
 val valtimoVersion: String by project
-val operatonVersion: String by project
+val camundaVersion: String by project
 
 dependencies {
     compileOnly("com.ritense.valtimo:plugin-valtimo")
     compileOnly("com.ritense.valtimo:process-document")
     compileOnly("com.ritense.valtimo:contract")
-    compileOnly("org.operaton.bpm:operaton-engine:$operatonVersion")
+    compileOnly("org.camunda.bpm:camunda-engine:$camundaVersion")
     compileOnly("org.springframework.boot:spring-boot-autoconfigure")
     compileOnly("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.springframework.boot:spring-boot-starter-webflux")
 
-    compileOnly("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")
+    compileOnly("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
 
     // Testing
     testImplementation("com.ritense.valtimo:plugin-valtimo")
     testImplementation("com.ritense.valtimo:process-document")
-    testImplementation("com.ritense.valtimo:building-block")
     testImplementation("com.ritense.valtimo:local-resource")
     testImplementation("com.ritense.valtimo:test-utils-common")
 
