@@ -5,7 +5,7 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction
 import reactor.netty.http.client.HttpClient
 
-@PluginCategory("haal-centraal-authentication-plugin")
+@PluginCategory("haal-centraal-authentication")
 interface HaalCentraalAuthentication : ExchangeFilterFunction {
     fun applyAuth(builder: RestClient.Builder): RestClient.Builder
 
